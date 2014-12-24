@@ -1,0 +1,33 @@
+{
+  "rabbitmq": {
+    "ssl": {
+      "private_key_file": "/etc/sensu/ssl/client_key.pem",
+      "cert_chain_file": "/etc/sensu/ssl/client_cert.pem"
+    },
+    "port": {{ rabbitmq_port }},
+    "host": {{ ansible_fqdn }},
+    "user": {{ rabbitmq_user }},
+    "password": {{ rabbitmq_password }},
+    "vhost": {{ rabbitmq_vhost }} 
+  },
+  "redis": {
+    "host": {{ redis_host }} ,
+    "port": {{ redis_port }}
+  },
+  "api": {
+    "host": {{ ansible_fqdn }},
+    "port": {{ api_port }},
+  },
+  "dashboard": {
+    "host": {{ dashboard_host }},
+    "port": {{ dashboard_port }},
+    "user": {{ dashboard_admin }},
+    "password": {{ dashboard_password }},
+  },
+  "handlers": {
+    "default": {
+      "type": {{ handlers_type }},
+      "command": {{ handlers_command }},
+    }
+  }
+}

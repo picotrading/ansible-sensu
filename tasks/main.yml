@@ -1,0 +1,37 @@
+---
+
+- name: install sensu and enable
+  yum: name=sensu state=present
+  when: ansible_os_family == "RedHat" and ansible_lsb.major_release|int >= 6
+
+- name: copy configuration to sensu ssl dir
+  copy: 
+    src=sensu.json.j2 
+    dest=/etc/sensu/conf.d/ 
+    owner=root group=root mode=644
+  copy: 
+    src=client_key.pem 
+    dest="{{ sensu_ssl_dir }}" 
+    owner=root group=root mode=644
+  copy: 
+    src=client_cert.pem 
+    dest="{{ sensu_ssl_dir }}" 
+    owner=root group=root mode=644
+
+- name: set services to on
+  command: 
+    chkconfig sensu-server on
+    chkconfig sensu-api on
+    chkconfig sensu-client on
+    chkconfig sensu-dashboard on
+
+- name: startup sensu components
+  command: 
+    sudo /etc/init.d/sensu-server start
+  command: 
+    sudo /etc/init.d/sensu-api start
+  command: 
+    sudo /etc/init.d/sensu-client start
+# Does not exist in CentOS?
+#  command: 
+#    sudo /etc/init.d/sensu-dashboard start

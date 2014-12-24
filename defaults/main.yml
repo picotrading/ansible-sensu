@@ -1,0 +1,26 @@
+---
+
+api_host: localhost
+api_port: 4567
+
+dashboard_host: localhost
+dashboard_port: 8080
+dashboard_user: admin
+dashboard_password: secret
+
+handlers_type: pipe
+handlers_command: true
+
+redis_host: localhost
+redis_port: 6379
+
+rabbitmq_private_key_file: /etc/sensu/ssl/client_key.pem
+rabbitmq_cert_chain_file: /etc/sensu/ssl/client_cert.pem
+rabbitmq_port: 5671
+rabbitmq_host: localhost
+rabbitmq_user: sensu
+rabbitmq_password: mypass
+rabbitmq_vhost: /sensu
+
+sensu_config_dir: /etc/sensu/
+sensu_ssl_dir: /etc/sensu/ssl/

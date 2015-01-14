@@ -1,0 +1,17 @@
+---
+
+- name: Copy client config and restart client
+  template:
+    src=client.json.j2
+    dest=/etc/sensu/conf.d/client.json
+    owner=root
+    group=root
+    mode=0644
+  notify:
+    - restart_sensu_client
+
+- name: start_sensu_client
+  service:
+    name: sensu-client
+    enabled: yes
+    state: started

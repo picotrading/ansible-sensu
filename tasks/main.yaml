@@ -1,0 +1,12 @@
+---
+
+- name: Sensu distribution is RedHat
+  assert:
+    that: ansible_os_family == "RedHat"
+
+- include: common.yaml
+
+- include: client.yaml
+
+- include: server.yaml
+  when: install_sensu_server

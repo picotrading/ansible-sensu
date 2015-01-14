@@ -1,0 +1,10 @@
+---
+
+- name: restart_sensu_server
+  service: name=sensu-server state=restarted enabled=yes
+
+- name: restart_sensu_api
+  service: name=sensu-api state=restarted enabled=yes
+
+- name: restart_sensu_client
+  service: name=sensu-client state=restarted enabled=yes

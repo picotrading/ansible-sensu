@@ -1,6 +1,7 @@
 {
   "client": {
-    "name": {{ sensu_server }},
-    "address": {{ sensu_server_address }},
-    "subscriptions": [ "test" ]
+    "name": "{{ sensu_server }}",
+    "address": "{{ sensu_server_address }}",
+    "subscriptions": [ "{{ sensu_subscriptions }}" ]
+  }
 }

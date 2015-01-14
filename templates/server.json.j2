@@ -1,0 +1,33 @@
+{
+  "rabbitmq": {
+    "ssl": {
+      "private_key_file": "{{ sensu_ssl_dir }}/client_key.pem",
+      "cert_chain_file": "{{ sensu_ssl_dir}}/client_cert.pem"
+    },
+    "port": {{ rabbitmq_port }},
+    "host": "{{ rabbitmq_host }}",
+    "user": "{{ rabbitmq_user }}",
+    "password": "{{ rabbitmq_password }}",
+    "vhost": "{{ rabbitmq_vhost }}" 
+  },
+  "redis": {
+    "host": "{{ redis_host }}",
+    "port": {{ redis_port }}
+  },
+  "api": {
+    "host": "{{ api_host }}",
+    "port": {{ api_port }}
+  },
+  "dashboard": {
+    "host": "{{ dashboard_host }}",
+    "port": "{{ dashboard_port }}",
+    "user": "{{ dashboard_user }}",
+    "password": "{{ dashboard_password }}"
+  },
+  "handlers": {
+   "default": {
+      "type": "{{ handlers_type }}",
+      "command": "{{ handlers_command }}"
+    }
+  }
+}

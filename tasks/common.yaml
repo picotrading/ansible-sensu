@@ -1,10 +1,22 @@
 ---
 
 - name: Create /etc/sensu & /etc/sensu/ssl dir
-  file: path=/etc/sensu/ssl state=directory owner=root group=root mode=0755
+  file:
+    path: /etc/sensu/ssl
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
 
 - name: Set /etc/sensu/ssl dir permissions
-  file: path=/etc/sensu/ssl state=directory owner=root group=root mode=0755
+  file:
+    path: /etc/sensu/ssl
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
 
 - name: install sensu
-  yum: name=sensu state=present
+  yum:
+    name: sensu
+    state: present

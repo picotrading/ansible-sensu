@@ -4,8 +4,8 @@ install_sensu_server: false
 install_sensu_client: true
 
 # Cert and key file
-client_cert: "client_cert.pem"
-client_key: "client_key.pem"
+client_cert: client_cert.pem
+client_key: client_key.pem
 
 # Common defaults
 sensu_config_dir: "/etc/sensu"

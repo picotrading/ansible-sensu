@@ -8,27 +8,27 @@ client_cert: client_cert.pem
 client_key: client_key.pem
 
 # Common defaults
-sensu_config_dir: "/etc/sensu"
-sensu_ssl_dir: "/etc/sensu/ssl"
+sensu_config_dir: /etc/sensu
+sensu_ssl_dir: /etc/sensu/ssl
 
 # Client defaults
-sensu_server: "sensu-server.com"
-sensu_server_address: "10.0.0.1"
-sensu_subscriptions: "test"
+sensu_server: sensu-server.com
+sensu_server_address: 10.0.0.1
+sensu_subscriptions: test
 
 # Server defaults
-api_host: "localhost"
+api_host: localhost
 api_port: 4567
-dashboard_host: "localhost"
+dashboard_host: localhost
 dashboard_port: 8080
-dashboard_user: "admin"
-dashboard_password: "secret"
-handlers_type: "pipe"
-handlers_command: "true"
-redis_host: "localhost"
+dashboard_user: admin
+dashboard_password: secret
+handlers_type: pipe
+handlers_command: true
+redis_host: localhost
 redis_port: 6379
 rabbitmq_port: 5671
-rabbitmq_host: "localhost"
-rabbitmq_user: "user"
-rabbitmq_password: "mypass"
-rabbitmq_vhost: "/sensu"
+rabbitmq_host: localhost
+rabbitmq_user: user
+rabbitmq_password: mypass
+rabbitmq_vhost: /sensu

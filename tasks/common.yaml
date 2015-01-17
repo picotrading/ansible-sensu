@@ -16,7 +16,7 @@
     group: root
     mode: 0755
 
-- name: install sensu
+- name: Install sensu
   yum:
     name: sensu
     state: present

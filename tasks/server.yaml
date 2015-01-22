@@ -1,8 +1,5 @@
 ---
 
-- name: Sensu server var
-  debug: "Sensu server var is {{ install_sensu_server }}"
-
 - name: Copy server config to Sensu SSL dir
   template:
     src: server.json.j2
@@ -25,19 +22,18 @@
     - restart_sensu_server
     - restart_sensu_api
 
-- name: start_sensu_api
-  service:
-    name: sensu-api
-    enabled: yes
-    state: started
-
-- name: start_sensu_server
-  service:
-    name: sensu-server
-    enabled: yes
-    state: started
-
 - name: Install uchiwa dashboard
   yum:
    name: uchiwa
    state: latest
+
+- name: start_sensu_services
+  service:
+    name: "{{ item }}"
+    enabled: yes
+    state: started
+  with_items:
+  - sensu-server
+  - sensu-api
+  - uchiwa
+

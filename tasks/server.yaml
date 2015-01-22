@@ -36,3 +36,8 @@
     name: sensu-server
     enabled: yes
     state: started
+
+- name: Install uchiwa dashboard
+  yum:
+   name: uchiwa
+   state: latest

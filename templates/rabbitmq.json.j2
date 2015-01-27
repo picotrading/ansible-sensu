@@ -1,0 +1,13 @@
+{
+  "rabbitmq": {
+    "ssl": {
+      "cert_chain_file": "{{ rabbitmq_cert_file }}",
+      "private_key_file": "{{ rabbitmq_key_file }}"
+    },
+    "host": "{{ rabbitmq_host }}",
+    "port": {{ rabbitmq_port }},
+    "vhost": "{{ rabbitmq_vhost }}",
+    "user": "{{ rabbitmq_user }}",
+    "password": "{{ rabbitmq_password }}"
+  }
+}

@@ -16,6 +16,11 @@
     group: root
     mode: 0755
 
+- name: Copy Sensu rabbitmq config file
+  template:
+    src: rabbitmq.json.j2
+    dest: "{{ sensu_config_dir }}/conf.d/rabbitmq.json"
+
 - name: Install sensu
   yum:
     name: sensu

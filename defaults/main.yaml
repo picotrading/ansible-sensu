@@ -12,13 +12,13 @@ sensu_config_dir: /etc/sensu
 sensu_ssl_dir: /etc/sensu/ssl
 
 # Sensu rabbitmq config
-rabbitmq_cert_file: "{{ sensu_ssl_dir }}/{{ client_cert }}"
-rabbitmq_key_file: "{{ sensu_ssl_dir }}/{{ client_key }}"
-rabbitmq_host: localhost
-rabbitmq_port: 5672
-rabbitmq_vhost: /sensu
-rabbitmq_user: sensu
-rabbitmq_password: sensu
+sensu_rabbitmq_cert_file: "{{ sensu_ssl_dir }}/{{ client_cert }}"
+sensu_rabbitmq_key_file: "{{ sensu_ssl_dir }}/{{ client_key }}"
+sensu_rabbitmq_host: localhost
+sensu_rabbitmq_port: 5672
+sensu_rabbitmq_vhost: /sensu
+sensu_rabbitmq_user: sensu
+sensu_rabbitmq_password: sensu
 
 # Client defaults
 sensu_server: localhost

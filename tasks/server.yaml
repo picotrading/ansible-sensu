@@ -8,20 +8,6 @@
     group: root
     mode: 644
 
-- name: Copy SSL certs and restart server
-  copy:
-    src: "{{ item }}.pem"
-    dest: "{{ sensu_ssl_dir }}/{{ item }}.pem"
-    owner: root
-    group: root
-    mode: 644
-  with_items:
-    - client_cert
-    - client_key
-  notify:
-    - restart_sensu_server
-    - restart_sensu_api
-
 - name: Install uchiwa dashboard
   yum:
    name: uchiwa

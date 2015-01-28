@@ -1,13 +1,13 @@
 {
   "rabbitmq": {
     "ssl": {
-      "cert_chain_file": "{{ rabbitmq_cert_file }}",
-      "private_key_file": "{{ rabbitmq_key_file }}"
+      "cert_chain_file": "{{ sensu_rabbitmq_cert_file }}",
+      "private_key_file": "{{ sensu_rabbitmq_key_file }}"
     },
-    "host": "{{ rabbitmq_host }}",
-    "port": {{ rabbitmq_port }},
-    "vhost": "{{ rabbitmq_vhost }}",
-    "user": "{{ rabbitmq_user }}",
-    "password": "{{ rabbitmq_password }}"
+    "host": "{{ sensu_rabbitmq_host }}",
+    "port": {{ sensu_rabbitmq_port }},
+    "vhost": "{{ sensu_rabbitmq_vhost }}",
+    "user": "{{ sensu_rabbitmq_user }}",
+    "password": "{{ sensu_rabbitmq_password }}"
   }
 }

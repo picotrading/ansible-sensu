@@ -1,20 +1,26 @@
 ---
 
-- name: Create /etc/sensu & /etc/sensu/ssl dir
+- name: Create sensu directories
   file:
-    path: /etc/sensu/ssl
+    path: "{{ item }}"
     state: directory
     owner: root
     group: root
     mode: 0755
+  with_items:
+    - /etc/sensu/ssl
+    - /etc/sensu/conf.d
 
-- name: Set /etc/sensu/ssl dir permissions
-  file:
-    path: /etc/sensu/ssl
-    state: directory
+- name: Copy SSL certs
+  copy:
+    src: "{{ item }}.pem"
+    dest: "{{ sensu_ssl_dir }}/{{ item }}.pem"
     owner: root
     group: root
-    mode: 0755
+    mode: 644
+  with_items:
+    - client_cert
+    - client_key
 
 - name: Copy Sensu rabbitmq config file
   template:

@@ -11,11 +11,15 @@ galaxy_info:
   categories:
     - Monitoring
 dependencies:
-  - role: rabbitmq
-  - role: redis
   - role: yumrepo
     yumrepo_repos:
       sensu:
         name: sensu-main
-        baseurl: http://repos.sensuapp.org/yum/el/$releasever/$basearch/
+        baseurl: "{{ sensu_repo }}"
         gpgcheck: 0
+  - role: rabbitmq
+    when: install_sensu_server
+  - role: redis
+    when: install_sensu_server
+  - role: uchiwa
+    when: install_sensu_server

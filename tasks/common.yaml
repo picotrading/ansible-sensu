@@ -11,21 +11,13 @@
     - /etc/sensu/ssl
     - /etc/sensu/conf.d
 
-- name: Copy SSL certs
-  copy:
-    src: "{{ item }}.pem"
-    dest: "{{ sensu_ssl_dir }}/{{ item }}.pem"
-    owner: root
-    group: root
-    mode: 644
-  with_items:
-    - client_cert
-    - client_key
-
 - name: Copy Sensu rabbitmq config file
   template:
     src: rabbitmq.json.j2
     dest: "{{ sensu_config_dir }}/conf.d/rabbitmq.json"
+
+- name: Debug install
+  debug: msg="Installing sensu from {{ sensu_repo }}"
 
 - name: Install sensu
   yum:

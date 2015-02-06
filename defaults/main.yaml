@@ -1,4 +1,7 @@
 ---
+# Repo
+sensu_repo: http://repos.sensuapp.org/yum/el/$releasever/$basearch/
+
 # Variables for installation of client/server
 install_sensu_server: false
 install_sensu_client: true
@@ -14,25 +17,21 @@ sensu_ssl_dir: /etc/sensu/ssl
 # Sensu rabbitmq config
 sensu_rabbitmq_cert_file: "{{ sensu_ssl_dir }}/{{ client_cert }}"
 sensu_rabbitmq_key_file: "{{ sensu_ssl_dir }}/{{ client_key }}"
+
+# Client defaults
+sensu_client_name: "{{ ansible_hostname }}"
+sensu_client_address: "{{ ansible_eth0.ipv4.address }}"
+sensu_client_subscriptions: "test"
+
+# Server defaults for config.json
+sensu_api_host: localhost
+sensu_api_port: 4567
+handlers_type: pipe
+handlers_command: true
 sensu_rabbitmq_host: localhost
-sensu_rabbitmq_port: 5672
+sensu_rabbitmq_port: 5671
 sensu_rabbitmq_vhost: /sensu
 sensu_rabbitmq_user: sensu
 sensu_rabbitmq_password: sensu
-
-# Client defaults
-sensu_server: localhost
-sensu_server_address: 127.0.0.1
-sensu_subscriptions: all
-
-# Server defaults
-api_host: localhost
-api_port: 4567
-dashboard_host: localhost
-dashboard_port: 8080
-dashboard_user: admin
-dashboard_password: secret
-handlers_type: pipe
-handlers_command: true
-redis_host: localhost
-redis_port: 6379
+sensu_redis_host: localhost
+sensu_redis_port: 6379

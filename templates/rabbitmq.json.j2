@@ -1,9 +1,9 @@
 {
   "rabbitmq": {
-    "ssl": {
+    {#- "ssl": {
       "cert_chain_file": "{{ sensu_rabbitmq_cert_file }}",
       "private_key_file": "{{ sensu_rabbitmq_key_file }}"
-    },
+    }, -#}
     "host": "{{ sensu_rabbitmq_host }}",
     "port": {{ sensu_rabbitmq_port }},
     "vhost": "{{ sensu_rabbitmq_vhost }}",

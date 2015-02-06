@@ -1,28 +1,24 @@
 {
   "rabbitmq": {
+    {% if sensu_rabbitmq_cert_file !='' -%}
     "ssl": {
-      "private_key_file": "{{ sensu_ssl_dir }}/client_key.pem",
-      "cert_chain_file": "{{ sensu_ssl_dir}}/client_cert.pem"
+    "cert_chain_file": "{{ sensu_rabbitmq_cert_file }}",
+    "private_key_file": "{{ sensu_rabbitmq_key_file }}"
     },
+    {%- endif %}
+    "host": {{ sensu_rabbitmq_host | to_nice_json }},
     "port": {{ sensu_rabbitmq_port }},
-    "host": "{{ sensu_rabbitmq_host }}",
     "user": "{{ sensu_rabbitmq_user }}",
     "password": "{{ sensu_rabbitmq_password }}",
     "vhost": "{{ sensu_rabbitmq_vhost }}" 
   },
   "redis": {
-    "host": "{{ redis_host }}",
-    "port": {{ redis_port }}
+   "host": {{ sensu_redis_host | to_nice_json }},
+   "port": {{ sensu_redis_port }}
   },
   "api": {
-    "host": "{{ api_host }}",
-    "port": {{ api_port }}
-  },
-  "dashboard": {
-    "host": "{{ dashboard_host }}",
-    "port": {{ dashboard_port }},
-    "user": "{{ dashboard_user }}",
-    "password": "{{ dashboard_password }}"
+   "host": {{ sensu_api_host | to_nice_json }},
+   "port": {{ sensu_api_port }}
   },
   "handlers": {
    "default": {

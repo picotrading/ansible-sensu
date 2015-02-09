@@ -1,6 +1,11 @@
 ---
 # Repo
-sensu_repo: http://repos.sensuapp.org/yum/el/$releasever/$basearch/
+sensu_repo_url: http://repos.sensuapp.org/yum/el/$releasever/$basearch/
+sensu_yumrepo_repos:
+  sensu-main:
+    name: sensu-main
+    baseurl: "{{ sensu_repo_url }}"
+    gpgcheck: 0
 
 # Variables for installation of client/server
 install_sensu_server: false

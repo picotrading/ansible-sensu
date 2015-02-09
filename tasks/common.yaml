@@ -16,9 +16,6 @@
     src: rabbitmq.json.j2
     dest: "{{ sensu_config_dir }}/conf.d/rabbitmq.json"
 
-- name: Debug install
-  debug: msg="Installing sensu from {{ sensu_repo }}"
-
 - name: Install sensu
   yum:
     name: sensu

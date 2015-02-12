@@ -15,6 +15,9 @@
   template:
     src: rabbitmq.json.j2
     dest: "{{ sensu_config_dir }}/conf.d/rabbitmq.json"
+  notify:
+    - restart_sensu_client
+    - restart_sensu_api
 
 - name: Install sensu
   yum:

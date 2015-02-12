@@ -1,7 +1,2 @@
-{
-  "client": {
-    "name": "{{ sensu_client_name }}",
-    "address": "{{ sensu_client_address }}",
-    "subscriptions": [ "{{ sensu_client_subscriptions }}" ]
-  }
-}
+{% from 'macros/encoders/json_encode_macro.j2' import json_encode with context -%}
+{{ json_encode(sensu_client_config) }}

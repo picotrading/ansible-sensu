@@ -19,24 +19,54 @@ client_key: client_key.pem
 sensu_config_dir: /etc/sensu
 sensu_ssl_dir: /etc/sensu/ssl
 
+# Sensu User
+sensu_user: sensu
+sensu_password: sensu
+sensu_vhost: /sensu
+
 # Sensu rabbitmq config
 sensu_rabbitmq_cert_file: "{{ sensu_ssl_dir }}/{{ client_cert }}"
 sensu_rabbitmq_key_file: "{{ sensu_ssl_dir }}/{{ client_key }}"
 
 # Client defaults
-sensu_client_name: "{{ ansible_hostname }}"
-sensu_client_address: "{{ ansible_eth0.ipv4.address }}"
-sensu_client_subscriptions: "test"
+rabbitmq_client_config:
+  rabbitmq:
+# Uncomment to enable ssl
+#    ssl:
+#      cert_chain_file: "{{ sensu_rabbitmq_cert_file }}"
+#      private_key_file: "{{ sensu_rabbitmq_key_file }}"
+    host: localhost
+    port: 5671
+    user: "{{ sensu_user }}"
+    password: "{{ sensu_password }}"
+    vhost: "{{ sensu_vhost }}"
+
+# Client defaults
+sensu_client_config:
+  client:
+    name: "{{ ansible_hostname }}"
+    address: "{{ ansible_eth0.ipv4.address }}"
+    subscriptions: [ "test" ]
 
 # Server defaults for config.json
-sensu_api_host: localhost
-sensu_api_port: 4567
-handlers_type: pipe
-handlers_command: true
-sensu_rabbitmq_host: localhost
-sensu_rabbitmq_port: 5671
-sensu_rabbitmq_vhost: /sensu
-sensu_rabbitmq_user: sensu
-sensu_rabbitmq_password: sensu
-sensu_redis_host: localhost
-sensu_redis_port: 6379
+sensu_server_config:
+  rabbitmq:
+# Uncomment to enable ssl
+#    ssl:
+#      cert_chain_file: "{{ sensu_rabbitmq_cert_file }}"
+#      private_key_file: "{{ sensu_rabbitmq_key_file }}"
+    host: localhost
+    port: 5671
+    user: "{{ sensu_user }}"
+    password: "{{ sensu_password }}"
+    vhost: "{{ sensu_vhost }}"
+  redis:
+    host: localhost
+    port: 6379
+  api:
+    host: localhost
+    port: 4567
+  handlers:
+    default:
+      type: pipe
+      command: " true"      # Not an accident, macro needs this to have whitespace to work

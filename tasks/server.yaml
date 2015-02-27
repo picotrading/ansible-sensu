@@ -1,20 +1,13 @@
 ---
 
-- name: Copy server config to Sensu dir
+- name: Create Sensu server config
   template:
-    src: server.json.j2
-    dest: "{{ sensu_config_dir }}/config.json"
-    owner: root
-    group: root
-    mode: 644
-  notify:
-    restart_sensu_server
+    src: config.json.j2
+    dest: /etc/sensu/config.json
+  notify: Restart sensu-server
 
-- name: start_sensu_services
+- name: Make sure Sensu server services are enabled and started
   service:
-    name: "{{ item }}"
+    name: sensu-server
     enabled: yes
     state: started
-  with_items:
-  - sensu-server
-  - sensu-api

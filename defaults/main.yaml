@@ -1,72 +1,65 @@
 ---
-# Repo
-sensu_repo_url: http://repos.sensuapp.org/yum/el/$releasever/$basearch/
-sensu_yumrepo_repos:
-  sensu-main:
-    name: sensu-main
-    baseurl: "{{ sensu_repo_url }}"
-    gpgcheck: 0
+
+# YUM repo URL
+sensu_yum_repo_url: http://repos.sensuapp.org/yum/el/$releasever/$basearch/
 
 # Variables for installation of client/server
-install_sensu_server: false
-install_sensu_client: true
+sensu_install_server: false
+sensu_install_api: false
+sensu_install_client: true
 
-# Cert and key file
-client_cert: client_cert.pem
-client_key: client_key.pem
+# Default sensu-server config variables
+sensu_rabbitmq_host: localhost
+sensu_rabbitmq_port: 5671
+sensu_rabbitmq_user: sensu
+sensu_rabbitmq_password: sensu
+sensu_rabbitmq_vhost: /sensu
+sensu_redis_host: localhost
+sensu_redis_port: 6379
+sensu_handlers_default_type: pipe
+sensu_handlers_default_command: " true"
 
-# Common defaults
-sensu_config_dir: /etc/sensu
-sensu_ssl_dir: /etc/sensu/ssl
+# Default sensu-api config variables
+sensu_api_host: localhost
+sensu_api_port: 4567
 
-# Sensu User
-sensu_user: sensu
-sensu_password: sensu
-sensu_vhost: /sensu
-
-# Sensu rabbitmq config
-sensu_rabbitmq_cert_file: "{{ sensu_ssl_dir }}/{{ client_cert }}"
-sensu_rabbitmq_key_file: "{{ sensu_ssl_dir }}/{{ client_key }}"
-
-# Client defaults
-rabbitmq_client_config:
+# Default sensu-server and sensu-api config
+sensu_config:
   rabbitmq:
-# Uncomment to enable ssl
-#    ssl:
-#      cert_chain_file: "{{ sensu_rabbitmq_cert_file }}"
-#      private_key_file: "{{ sensu_rabbitmq_key_file }}"
-    host: localhost
-    port: 5671
-    user: "{{ sensu_user }}"
-    password: "{{ sensu_password }}"
-    vhost: "{{ sensu_vhost }}"
-
-# Client defaults
-sensu_client_config:
-  client:
-    name: "{{ ansible_hostname }}"
-    address: "{{ ansible_eth0.ipv4.address }}"
-    subscriptions: [ "test" ]
-
-# Server defaults for config.json
-sensu_server_config:
-  rabbitmq:
-# Uncomment to enable ssl
-#    ssl:
-#      cert_chain_file: "{{ sensu_rabbitmq_cert_file }}"
-#      private_key_file: "{{ sensu_rabbitmq_key_file }}"
-    host: localhost
-    port: 5671
-    user: "{{ sensu_user }}"
-    password: "{{ sensu_password }}"
-    vhost: "{{ sensu_vhost }}"
+    host: "{{ sensu_rabbitmq_host }}"
+    port: "{{ sensu_rabbitmq_port }}"
+    user: "{{ sensu_rabbitmq_user }}"
+    password: "{{ sensu_rabbitmq_password }}"
+    vhost: "{{ sensu_rabbitmq_vhost }}"
   redis:
-    host: localhost
-    port: 6379
+    host: "{{ sensu_redis_host }}"
+    port: "{{ sensu_redis_port }}"
   api:
-    host: localhost
-    port: 4567
+    host: "{{ sensu_api_host }}"
+    port: "{{ sensu_api_port }}"
   handlers:
     default:
-      type: pipe
-      command: " true"      # Not an accident, macro needs this to have whitespace to work
+      type: "{{ sensu_handlers_default_type }}"
+      command: "{{ sensu_handlers_default_command }}"
+
+# Default sensu-client config variables
+sensu_client_name: "{{ ansible_hostname }}"
+sensu_client_address: "{{ ansible_eth0.ipv4.address }}"
+sensu_client_subscriptions:
+  - test
+
+# Default client config
+sensu_client_config:
+  client:
+    name: "{{ sensu_client_name }}"
+    address: "{{ sensu_client_address }}"
+    subscriptions: "{{ sensu_client_subscriptions }}"
+
+# Default RabbitMQ config for Sensu client
+sensu_client_rabbitmq_config:
+  rabbitmq:
+    host: "{{ sensu_rabbitmq_host }}"
+    port: "{{ sensu_rabbitmq_port }}"
+    user: "{{ sensu_rabbitmq_user }}"
+    password: "{{ sensu_rabbitmq_password }}"
+    vhost: "{{ sensu_rabbitmq_vhost }}"

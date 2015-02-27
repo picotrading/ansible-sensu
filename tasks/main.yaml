@@ -2,12 +2,20 @@
 
 - name: Sensu distribution is RedHat
   assert:
-    that: ansible_os_family == "RedHat" and
-          ansible_distribution_major_version | int >= 6 
+    that: >
+      ansible_os_family == "RedHat" and
+      ansible_distribution_major_version | int >= 6
 
-- include: common.yaml
+- name: Install Sensu
+  yum:
+    name: sensu
+    state: present
 
 - include: server.yaml
-  when: install_sensu_server
+  when: sensu_install_server
+
+- include: api.yaml
+  when: sensu_install_api
 
 - include: client.yaml
+  when: sensu_install_client

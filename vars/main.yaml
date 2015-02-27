@@ -1,0 +1,8 @@
+---
+
+# Sensu YUM repo
+yumrepo_repos:
+  sensu:
+    name: sensu-main
+    baseurl: "{{ sensu_yum_repo_url }}"
+    gpgcheck: 0

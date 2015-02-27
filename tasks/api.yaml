@@ -1,0 +1,13 @@
+---
+
+- name: Create Sensu API config
+  template:
+    src: config.json.j2
+    dest: /etc/sensu/config.json
+  notify: Restart sensu-api
+
+- name: Make sure sensu-api is enabled and started
+  service:
+    name: sensu-api
+    enabled: yes
+    state: started

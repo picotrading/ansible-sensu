@@ -1,10 +1,17 @@
 ---
 
-- name: Create Sensu API config
+- name: Create Sensu API specific config
   template:
     src: config.json.j2
-    dest: /etc/sensu/config.json
+    dest: /etc/sensu/config_api.json
   notify: Restart sensu-api
+
+- name: Create symlink to the main config for sensu-api
+  file:
+    src: /etc/sensu/config_api.json
+    dest: /etc/sensu/config.json
+    state: link
+  when: sensu_install_api and not sensu_install_server
 
 - name: Make sure sensu-api is enabled and started
   service:

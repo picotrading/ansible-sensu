@@ -1,7 +1,7 @@
 ---
 
-# YUM repo URL
-sensu_yum_repo_url: http://repos.sensuapp.org/yum/el/$releasever/$basearch/
+# YUM repo URL (change "el/6" to "$releasever" once there is repo for "el/7")
+sensu_yum_repo_url: http://repos.sensuapp.org/yum/el/6/$basearch/
 
 # Variables for installation of client/server
 sensu_install_server: false

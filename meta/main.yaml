@@ -12,4 +12,10 @@ galaxy_info:
   categories:
     - monitoring
 dependencies:
-  - yumrepo
+  - role: common/yumrepo
+    yumrepo_repos:
+      sensu:
+        name: sensu-main
+        baseurl: "{{ sensu_yum_repo_url }}"
+        gpgcheck: 0
+  - common/sensu

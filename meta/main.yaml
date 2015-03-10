@@ -18,4 +18,3 @@ dependencies:
         name: sensu-main
         baseurl: "{{ sensu_yum_repo_url }}"
         gpgcheck: 0
-  - common/sensu

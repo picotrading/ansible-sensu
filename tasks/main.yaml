@@ -8,7 +8,7 @@
 
 - name: Install Sensu
   yum:
-    name: sensu
+    name: "{{ sensu_pkg }}"
     state: present
 
 - include: server.yaml

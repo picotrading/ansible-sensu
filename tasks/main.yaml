@@ -10,6 +10,8 @@
   yum:
     name: "{{ sensu_pkg }}"
     state: present
+  tags:
+    - sensu_pkg
 
 - include: server.yaml
   when: sensu_install_server

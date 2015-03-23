@@ -4,7 +4,10 @@
   template:
     src: config.json.j2
     dest: /etc/sensu/config_server.json
-  notify: Restart sensu-server
+  notify:
+    - Restart sensu-server
+  tags:
+    - sensu_config
 
 - name: Create symlink to the main config for sensu-server
   file:

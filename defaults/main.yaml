@@ -47,7 +47,7 @@ sensu_config:
 
 # Default sensu-client config variables
 sensu_client_name: "{{ ansible_hostname }}"
-sensu_client_address: "{{ ansible_eth0.ipv4.address }}"
+sensu_client_address: "{{ ansible_default_ipv4.address }}"
 sensu_client_subscriptions:
   - test
 

@@ -31,13 +31,13 @@ Example
 # Client installation
 - hosts: my_client1
   vars:
-    sensu_server: my_sensu_server
+    server__sensu: my_sensu_server
   roles:
     - role: sensu
       vars:
-        sensu_api_host: "{{ sensu_server }}"
-        sensu_rabbitmq_host: "{{ sensu_server }}"
-        sensu_redis_host: "{{ sensu_server }}"
+        sensu_api_host: "{{ server__sensu }}"
+        sensu_rabbitmq_host: "{{ server__sensu }}"
+        sensu_redis_host: "{{ server__sensu }}"
 ```
 
 

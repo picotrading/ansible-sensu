@@ -119,7 +119,7 @@ sensu_client_rabbitmq_config:
 Dependencies
 ------------
 * [`yumrepo`](https://github.com/picotrading/ansible-yumrepo) role
-* [Jinja2 Encoder Macros](https://github.com/picotrading/jinja2-encoder-macros)
+* [Config Encoder Macros](https://github.com/picotrading/config-encoder-macros)
 
 
 License

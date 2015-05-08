@@ -5,7 +5,7 @@
     src: config.json.j2
     dest: /etc/sensu/config_api.json
   notify:
-    - Restart sensu-api
+    - Restart sensu-api {{ sensu_from }}
   tags:
     - sensu_config
 
@@ -14,10 +14,17 @@
     src: /etc/sensu/config_api.json
     dest: /etc/sensu/config.json
     state: link
-  when: sensu_install_api and not sensu_install_server
+  when: >
+    sensu_install_api and
+    not sensu_install_server
 
-- name: Make sure sensu-api is enabled and started
+- name: Make sure sensu-api is enabled
   service:
     name: sensu-api
     enabled: yes
+
+- name: Make sure sensu-api is started
+  service:
+    name: sensu-api
     state: started
+  register: sensu_service_api_started

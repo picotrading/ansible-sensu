@@ -1,16 +1,19 @@
 ---
 
-- name: Restart sensu-server
+- name: Restart sensu-server {{ sensu_from }}
   service:
     name: sensu-server
     state: restarted
+  when: not sensu_service_server_started.changed
 
-- name: Restart sensu-api
+- name: Restart sensu-api {{ sensu_from }}
   service:
     name: sensu-api
     state: restarted
+  when: not sensu_service_api_started.changed
 
-- name: Restart sensu-client
+- name: Restart sensu-client {{ sensu_from }}
   service:
     name: sensu-client
     state: restarted
+  when: not sensu_service_client_started.changed

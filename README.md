@@ -53,6 +53,10 @@ sensu_yum_repo_url: http://repos.sensuapp.org/yum/el/6/$basearch/
 # Package to be installed (you can force a specific version here)
 sensu_pkg: sensu
 
+# This allows to change the name of handlers
+# (handy if the role is encapsualted and called multiple times)
+sensu_from: "(default)"
+
 # Variables for installation of client/server
 sensu_install_server: false
 sensu_install_api: false
@@ -94,7 +98,7 @@ sensu_config:
 
 # Default sensu-client config variables
 sensu_client_name: "{{ ansible_hostname }}"
-sensu_client_address: "{{ ansible_eth0.ipv4.address }}"
+sensu_client_address: "{{ ansible_default_ipv4.address }}"
 sensu_client_subscriptions:
   - test
 

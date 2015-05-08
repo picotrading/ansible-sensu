@@ -11,6 +11,7 @@ galaxy_info:
         - 6
   categories:
     - monitoring
+allow_duplicates: yes
 dependencies:
   - role: common/yumrepo
     yumrepo_repos:

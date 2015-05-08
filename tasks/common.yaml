@@ -1,6 +1,6 @@
 ---
 
-- name: "Install Sensu (pkg: {{ sensu_pkg }})"
+- name: Install Sensu
   yum:
     name: "{{ sensu_pkg }}"
     state: present

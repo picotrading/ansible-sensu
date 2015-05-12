@@ -16,6 +16,8 @@
     sensu_yum_install.changed
   notify:
     - Restart sensu-server {{ sensu_from }}
+  tags:
+    - sensu_pkg
 
 - name: Install Sensu - restart api
   debug:
@@ -25,6 +27,8 @@
     sensu_yum_install.changed
   notify:
     - Restart sensu-api {{ sensu_from }}
+  tags:
+    - sensu_pkg
 
 - name: Install Sensu - restart client
   debug:
@@ -34,3 +38,5 @@
     sensu_yum_install.changed
   notify:
     - Restart sensu-client {{ sensu_from }}
+  tags:
+    - sensu_pkg

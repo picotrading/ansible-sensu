@@ -22,9 +22,14 @@
   service:
     name: sensu-client
     enabled: yes
+  tags:
+    - sensu_config
 
 - name: Make sure sensu-client is started
   service:
     name: sensu-client
     state: started
   register: sensu_service_client_started
+  tags:
+    - sensu_pkg
+    - sensu_config

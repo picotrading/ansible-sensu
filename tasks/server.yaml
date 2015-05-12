@@ -15,14 +15,21 @@
     dest: /etc/sensu/config.json
     state: link
     force: yes
+  tags:
+    - sensu_config
 
 - name: Make sure Sensu server service is enabled
   service:
     name: sensu-server
     enabled: yes
+  tags:
+    - sensu_config
 
 - name: Make sure Sensu server service is started
   service:
     name: sensu-server
     state: started
   register: sensu_service_server_started
+  tags:
+    - sensu_pkg
+    - sensu_config

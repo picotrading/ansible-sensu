@@ -17,14 +17,21 @@
   when: >
     sensu_install_api and
     not sensu_install_server
+  tags:
+    - sensu_config
 
 - name: Make sure sensu-api is enabled
   service:
     name: sensu-api
     enabled: yes
+  tags:
+    - sensu_config
 
 - name: Make sure sensu-api is started
   service:
     name: sensu-api
     state: started
   register: sensu_service_api_started
+  tags:
+    - sensu_pkg
+    - sensu_config

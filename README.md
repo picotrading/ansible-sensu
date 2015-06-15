@@ -122,6 +122,7 @@ sensu_client_rabbitmq_config:
 
 Dependencies
 ------------
+
 * [`yumrepo`](https://github.com/picotrading/ansible-yumrepo) role
 * [Config Encoder Macros](https://github.com/picotrading/config-encoder-macros)
 

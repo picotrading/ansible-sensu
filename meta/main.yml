@@ -8,7 +8,9 @@ galaxy_info:
   platforms:
     - name: EL
       versions:
+        - 5
         - 6
+        - 7
   categories:
     - monitoring
 allow_duplicates: yes
